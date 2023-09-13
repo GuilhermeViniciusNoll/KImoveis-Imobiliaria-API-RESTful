@@ -7,6 +7,5 @@ type TListUsers = Zod.infer<typeof schemas.listUsersSchema>
 type TCreateUser = Zod.infer<typeof schemas.createUserSchema>
 type TPartialUser = Zod.infer<typeof schemas.partialUserSchema>
 type TUpdateUser = Zod.infer<typeof schemas.dataUpdateUserSchema>
-type TUserViewSimple = Zod.infer<typeof schemas.userViewSimpleSchema>
 
-export { TUser, TCreateUser, TPartialUser, TLoginRequest, TUserView, TListUsers, TUserViewSimple, TUpdateUser } 
+export { TUser, TCreateUser, TPartialUser, TLoginRequest, TUserView, TListUsers, TUpdateUser } 

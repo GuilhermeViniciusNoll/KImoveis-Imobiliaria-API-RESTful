@@ -11,12 +11,11 @@ const userSchema = z.object({
     deletedAt: z.union([z.string().datetime(), z.null()])
 })
 
-const createUserSchema = userSchema.omit({ id: true, createdAt: true, updatedAt: true, deletedAt: true }).partial({ admin: true })
 const partialUserSchema = userSchema.partial()
-const listUsersSchema = userSchema.omit({ password: true }).array()
 const userViewSchema = userSchema.omit({ password: true })
-const userViewSimpleSchema = userSchema.pick({ id: true, name: true, email: true })
-const dataUpdateUserSchema = userSchema.pick({ email: true, name: true, password: true })
+const listUsersSchema = userSchema.omit({ password: true }).array()
 const loginRequest = userSchema.pick({ email: true, password: true })
+const dataUpdateUserSchema = userSchema.pick({ email: true, name: true, password: true })
+const createUserSchema = userSchema.omit({ id: true, createdAt: true, updatedAt: true, deletedAt: true }).partial({ admin: true })
 
-export { userSchema, createUserSchema, partialUserSchema, loginRequest, userViewSchema, listUsersSchema, userViewSimpleSchema, dataUpdateUserSchema } 
+export { userSchema, createUserSchema, partialUserSchema, loginRequest, userViewSchema, listUsersSchema, dataUpdateUserSchema } 

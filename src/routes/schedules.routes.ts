@@ -5,7 +5,7 @@ import { Router } from "express"
 
 const schedulesRoute: Router = Router()
 
-schedulesRoute.post("", middlewares.verifyToken, middlewares.validBody(schemas.validScheduleSchema), controllers.createSchedule)
-schedulesRoute.get("/realEstate/:id", middlewares.verifyToken, middlewares.verifyPermission, middlewares.existRealEstate, controllers.getSchedulesByRealEstates)
+schedulesRoute.post("", middlewares.verifyToken, middlewares.validBody(schemas.validScheduleSchema), middlewares.verifyDateSchedule, controllers.createSchedule)
+schedulesRoute.get("/realEstate/:id", middlewares.verifyToken, middlewares.verifyPermissionAdmin, middlewares.existRealEstate, controllers.getSchedulesByRealEstates)
 
 export default schedulesRoute

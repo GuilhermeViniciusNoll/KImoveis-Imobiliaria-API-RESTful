@@ -11,7 +11,7 @@ app.use("/users", routes.usersRoute)
 app.use("/login", routes.loginRoute)
 app.use("/schedules", routes.schedulesRoute)
 app.use("/categories", routes.categoriesRoute)
-app.use("/realEstate", routes.realEstateRoute)
+app.use("/realEstate", routes.realEstatesRoute)
 
 app.use(middlewares.handleError)
 

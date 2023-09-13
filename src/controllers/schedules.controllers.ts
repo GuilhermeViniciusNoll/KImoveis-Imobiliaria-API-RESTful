@@ -12,8 +12,8 @@ const createSchedule = async (req: Request, res: Response): Promise<Response> =>
 const getSchedulesByRealEstates = async (req: Request, res: Response): Promise<Response> => {
 
     const id: number = res.locals.existRealEstate.id
-    const list: TRealStateCompleted = await services.getSchedulesByRealEstates(id)
-    return res.status(200).json(list)
+    const schedule: TRealStateCompleted = await services.getSchedulesByRealEstates(id)
+    return res.status(200).json(schedule)
 }
 
 export { createSchedule, getSchedulesByRealEstates }

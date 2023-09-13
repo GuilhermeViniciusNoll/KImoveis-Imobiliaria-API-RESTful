@@ -25,14 +25,14 @@ const getAllUsers = async (req: Request, res: Response): Promise<Response> => {
 const updateUser = async (req: Request, res: Response): Promise<Response> => {
 
     const payload: TCreateUser = req.body
-    const data: TUser = res.locals.user
+    const data: TUser = res.locals.userExistById
     const newUser: TPartialUser = await services.updateUser(data, payload)
     return res.status(200).json(newUser)
 }
 
 const deletedUser = async (req: Request, res: Response,): Promise<Response> => {
 
-    const payload: TUser = res.locals.user
+    const payload: TUser = res.locals.userExistById
     await services.deletedUser(payload)
     return res.status(204).send()
 }

@@ -18,13 +18,10 @@ const createScheduleSchema = scheduleSchema.omit({ id: true }).extend({
     realEstate: realEstatesSchema,
     user: userSchema
 })
-const validScheduleSchema = scheduleSchema.omit({ id: true }).extend({ realEstateId: z.number() })
-
-const partialScheduleSchema = scheduleSchema.deepPartial()
-const listScheduleSchema = scheduleSchema.array()
 const scheduleCompletedSchema = scheduleSchema.extend({
     realEstate: realEstatesSchema,
     user: userSchema
 })
+const validScheduleSchema = scheduleSchema.omit({ id: true }).extend({ realEstateId: z.number() })
 
-export { scheduleSchema, createScheduleSchema, validScheduleSchema, scheduleCompletedSchema, partialScheduleSchema, listScheduleSchema }
+export { scheduleSchema, createScheduleSchema, validScheduleSchema, scheduleCompletedSchema }

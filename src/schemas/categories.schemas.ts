@@ -6,8 +6,8 @@ const categorySchema = z.object({
     name: z.string().min(1).max(45),
 })
 
-const createCategorySchema = categorySchema.omit({ id: true })
 const listCategorySchema = categorySchema.array()
+const createCategorySchema = categorySchema.omit({ id: true })
 const listRealStateByCategory = categorySchema.extend({ realEstate: realEstatesSchema.array() })
 
 export { categorySchema, createCategorySchema, listCategorySchema, listRealStateByCategory } 

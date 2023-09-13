@@ -14,15 +14,13 @@ const createUser = async (payload: TCreateUser): Promise<TUserView> => {
     const user: TCreateUser = userRepo.create(payload)
     await userRepo.save(user)
 
-    const userRepoView: Repository<TUserView> = AppDataSource.getRepository("users")
-    const userView: TUserView | null = await userRepoView.findOneBy({ email: user.email })
+    const userView: TUserView | null = await repositories.userRepo.findOneBy({ email: user.email })
     return schemas.userViewSchema.parse(userView)
 }
 
 const login = async (payload: TLoginRequest): Promise<String> => {
 
-    const userRepo: Repository<TUser> = AppDataSource.getRepository("users")
-    const user: TUser | null = await userRepo.findOneBy({ email: String(payload.email) })
+    const user: TUser | null = await repositories.userRepo.findOneBy({ email: String(payload.email) })
     if (!user) throw new appError("Invalid credentials", 401)
 
     const pass = compareSync(payload.password, user.password)
@@ -39,8 +37,7 @@ const login = async (payload: TLoginRequest): Promise<String> => {
 
 const getAllUsers = async (): Promise<TListUsers> => {
 
-    const userRepo: Repository<TUserView> = AppDataSource.getRepository("users")
-    const listUsers: TListUsers = await userRepo.find()
+    const listUsers: TListUsers = await repositories.userRepo.find()
     return schemas.listUsersSchema.parse(listUsers)
 }
 
@@ -63,8 +60,7 @@ const updateUser = async (data: TUser, payload: Partial<TUpdateUser>): Promise<T
 
 const deletedUser = async (payload: Omit<TUser, "deletedAt">) => {
 
-    const userRepo: Repository<TUser> = AppDataSource.getRepository("users")
-    await userRepo.softDelete(payload)
+    await repositories.userRepo.softDelete(payload)
 }
 
 export { createUser, login, getAllUsers, updateUser, deletedUser }
